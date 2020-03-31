@@ -5,4 +5,17 @@
     <string name="label_beranda">Beranda</string>
     <string name="label_muat_ulang">Muat ulang</string>
     <string name="label_pesan">Pesan</string>
+
+    <!--Home-->
+    <string name="label_positif">Positif</string>
+    <string name="label_sembuh">Sembuh</string>
+    <string name="label_meninggal">Meninggal</string>
+    <string name="label_orang">Orang</string>
+    <string name="label_layanan">Layanan Aplikasi</string>
+    <string name="label_layanan_caption">Nikmati layanan terbaik untuk indonesia sehat</string>
+    <string name="label_sponsor">Terima Kasih</string>
+    <string name="label_sponsor_caption">Data yang diambil dari open source sumber terpercaya dan sponsor yang membantu</string>
+
+    <!--Google maps-->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyB8gAag_Q7QzwnBFoVcF5Z8PZonPnYc1ow</string>
 </resources>

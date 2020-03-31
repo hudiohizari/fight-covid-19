@@ -4,5 +4,19 @@
     <color name="colorPrimaryDark">#5E17A9</color>
     <color name="colorAccent">#5E17A9</color>
 
-    <color name="newLightGray">#BDBDBD</color>
+    <!--normal-->
+    <color name="red">#A80000</color>
+    <color name="blue">#0857CD</color>
+    <color name="gray">#828282</color>
+
+    <!--dark-->
+    <color name="darkWhite">#FAFAFA</color>
+
+    <!--light-->
+    <color name="lightGray">#BDBDBD</color>
+    <color name="lightBlack">#333333</color>
+
+    <!--translucent-->
+    <color name="red50">#50A80000</color>
+    <color name="green50">#5000FF00</color>
 </resources>

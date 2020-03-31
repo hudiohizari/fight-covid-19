@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import id.rumahawan.fightcovid19.R
-import id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelFragmentInbox
+import id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelInbox
 
 class FragmentInbox : Fragment() {
 
@@ -16,7 +16,7 @@ class FragmentInbox : Fragment() {
             FragmentInbox()
     }
 
-    private lateinit var viewModel: ViewModelFragmentInbox
+    private lateinit var viewModel: ViewModelInbox
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class FragmentInbox : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ViewModelFragmentInbox::class.java)
+        viewModel = ViewModelProvider(this).get(ViewModelInbox::class.java)
         // TODO: Use the ViewModel
     }
 

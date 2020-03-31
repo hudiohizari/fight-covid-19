@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "78221465698",
+    "firebase_url": "https://covid-19-7d2a4.firebaseio.com",
+    "project_id": "covid-19-7d2a4",
+    "storage_bucket": "covid-19-7d2a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78221465698:android:3fbaf298cfc3f672ce193b",
+        "android_client_info": {
+          "package_name": "com.rumahawan.covid19"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78221465698-l0l3qg6o415shrvgrtk6kermc5r7f98j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rumahawan.covid19",
+            "certificate_hash": "6e2f5643ab6b43f4f31c39a3e6e962aaac325f50"
+          }
+        },
+        {
+          "client_id": "78221465698-4p4lrh9c2400mphq3vv9kmg58ata1gtk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rumahawan.covid19",
+            "certificate_hash": "ec26fbec7b0aa5335a324013f56779b3f91f6435"
+          }
+        },
+        {
+          "client_id": "78221465698-cmoh9vbtdqnhfrttd9ji266rf0q7sgvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFVk2JFuxWcsmynOdtehiyLJ5xA8vPjYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78221465698-cmoh9vbtdqnhfrttd9ji266rf0q7sgvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78221465698:android:3dade68b6b4f4c30ce193b",
+        "android_client_info": {
+          "package_name": "id.rumahawan.fightcovid19"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78221465698-99eoupmb1npm0up8vodsns4eogd4npt6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.rumahawan.fightcovid19",
+            "certificate_hash": "6e2f5643ab6b43f4f31c39a3e6e962aaac325f50"
+          }
+        },
+        {
+          "client_id": "78221465698-cmoh9vbtdqnhfrttd9ji266rf0q7sgvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFVk2JFuxWcsmynOdtehiyLJ5xA8vPjYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78221465698-cmoh9vbtdqnhfrttd9ji266rf0q7sgvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

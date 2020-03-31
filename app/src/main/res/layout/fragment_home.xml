@@ -1,13 +1,415 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".navigation.ui.fragment.FragmentHome">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <data>
+        <variable
+            name="viewModel"
+            type="id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelHome" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello from home" />
+        android:background="@android:color/white"
+        tools:context=".navigation.ui.fragment.FragmentHome">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="20sp"
+                android:textColor="@color/lightBlack"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Title"/>
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mvMain"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/lightGray"
+                app:layout_constraintDimensionRatio="H, 2:1"
+                app:layout_constraintTop_toBottomOf="@id/tvHeader"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvLastUpdated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="@{viewModel.lastUpdated}"
+                android:textSize="12sp"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/mvMain"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Last Updated" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:textSize="20sp"
+                android:textColor="@color/lightBlack"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvLastUpdated"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Title"/>
+
+            <View
+                android:id="@+id/vPositive"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/border_light_gray"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/vHeal"
+                app:layout_constraintBottom_toTopOf="@id/tvService"/>
+
+            <ImageView
+                android:id="@+id/ivPositive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_virus"
+                android:contentDescription="@string/label_positif"
+                app:layout_constraintTop_toTopOf="@id/vPositive"
+                app:layout_constraintStart_toStartOf="@id/vPositive"
+                app:layout_constraintEnd_toStartOf="@id/tvPositive"/>
+
+            <TextView
+                android:id="@+id/tvPositive"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/label_positif"
+                android:textStyle="bold"
+                android:textColor="@color/lightBlack"
+                android:gravity="center"
+                app:autoSizeStepGranularity="0.5sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintTop_toTopOf="@id/ivPositive"
+                app:layout_constraintStart_toEndOf="@id/ivPositive"
+                app:layout_constraintEnd_toEndOf="@id/vPositive"
+                app:layout_constraintBottom_toBottomOf="@id/ivPositive"/>
+
+            <TextView
+                android:id="@+id/tvPositiveAmount"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="@{viewModel.positive}"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:contentDescription="@string/label_positif"
+                app:autoSizeStepGranularity="0.5sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@id/ivPositive"
+                app:layout_constraintStart_toStartOf="@id/vPositive"
+                app:layout_constraintEnd_toStartOf="@id/tvPositiveLabel"
+                tools:text="200"/>
+
+            <TextView
+                android:id="@+id/tvPositiveLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/label_orang"
+                android:textSize="12sp"
+                android:textColor="@color/lightBlack"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="@id/tvPositiveAmount"
+                app:layout_constraintStart_toEndOf="@id/tvPositiveAmount"
+                app:layout_constraintEnd_toEndOf="@id/vPositive"
+                app:layout_constraintBottom_toBottomOf="@id/tvPositiveAmount"/>
+
+            <View
+                android:id="@+id/vHeal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/border_light_gray"
+                app:layout_constraintBottom_toTopOf="@id/tvService"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                app:layout_constraintStart_toEndOf="@id/vPositive"
+                app:layout_constraintEnd_toStartOf="@id/vDeath"/>
+
+            <ImageView
+                android:id="@+id/ivHeal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_recovered"
+                android:contentDescription="@string/label_positif"
+                app:layout_constraintTop_toTopOf="@id/vHeal"
+                app:layout_constraintStart_toStartOf="@id/vHeal"
+                app:layout_constraintEnd_toStartOf="@id/tvHeal"/>
+
+            <TextView
+                android:id="@+id/tvHeal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/label_sembuh"
+                android:textStyle="bold"
+                android:textColor="@color/lightBlack"
+                android:gravity="center"
+                app:autoSizeStepGranularity="0.5sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintTop_toTopOf="@id/ivHeal"
+                app:layout_constraintStart_toEndOf="@id/ivHeal"
+                app:layout_constraintEnd_toEndOf="@id/vHeal"
+                app:layout_constraintBottom_toBottomOf="@id/ivHeal"/>
+
+            <TextView
+                android:id="@+id/tvHealAmount"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="@{viewModel.recovered}"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/blue"
+                android:contentDescription="@string/label_positif"
+                app:autoSizeStepGranularity="0.5sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@id/ivHeal"
+                app:layout_constraintStart_toStartOf="@id/vHeal"
+                app:layout_constraintEnd_toStartOf="@id/tvHealLabel"
+                tools:text="200"/>
+
+            <TextView
+                android:id="@+id/tvHealLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/label_orang"
+                android:textSize="12sp"
+                android:textColor="@color/lightBlack"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="@id/tvHealAmount"
+                app:layout_constraintStart_toEndOf="@id/tvHealAmount"
+                app:layout_constraintEnd_toEndOf="@id/vHeal"
+                app:layout_constraintBottom_toBottomOf="@id/tvHealAmount"/>
+
+            <View
+                android:id="@+id/vDeath"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/border_light_gray"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                app:layout_constraintStart_toEndOf="@id/vHeal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tvService"/>
+
+            <ImageView
+                android:id="@+id/ivDeath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_tombstone"
+                android:contentDescription="@string/label_positif"
+                app:layout_constraintTop_toTopOf="@id/vDeath"
+                app:layout_constraintStart_toStartOf="@id/vDeath"
+                app:layout_constraintEnd_toStartOf="@id/tvDeath"/>
+
+            <TextView
+                android:id="@+id/tvDeath"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/label_meninggal"
+                android:textStyle="bold"
+                android:textColor="@color/lightBlack"
+                android:gravity="center"
+                app:autoSizeStepGranularity="0.5sp"
+                app:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="4sp"
+                app:layout_constraintTop_toTopOf="@id/ivDeath"
+                app:layout_constraintStart_toEndOf="@id/ivDeath"
+                app:layout_constraintEnd_toEndOf="@id/vDeath"
+                app:layout_constraintBottom_toBottomOf="@id/ivDeath"/>
+
+            <TextView
+                android:id="@+id/tvDeathAmount"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="@{viewModel.dead}"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/red"
+                android:contentDescription="@string/label_positif"
+                app:autoSizeStepGranularity="0.5sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@id/ivDeath"
+                app:layout_constraintStart_toStartOf="@id/vDeath"
+                app:layout_constraintEnd_toStartOf="@id/tvDeathLabel"
+                tools:text="200"/>
+
+            <TextView
+                android:id="@+id/tvDeathLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/label_orang"
+                android:textSize="12sp"
+                android:textColor="@color/lightBlack"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="@id/tvDeathAmount"
+                app:layout_constraintStart_toEndOf="@id/tvDeathAmount"
+                app:layout_constraintEnd_toEndOf="@id/vDeath"
+                app:layout_constraintBottom_toBottomOf="@id/tvDeathAmount"/>
+
+            <TextView
+                android:id="@+id/tvService"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/label_layanan"
+                android:textSize="20sp"
+                android:textColor="@color/lightBlack"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tvPositiveAmount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvServiceCaption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/label_layanan_caption"
+                android:textSize="10sp"
+                android:textColor="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tvService"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="SmallSp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:clipToPadding="false"
+                android:background="@color/darkWhite"
+                app:layout_constraintTop_toBottomOf="@id/tvServiceCaption"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvSponsor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/label_sponsor"
+                android:textSize="20sp"
+                android:textColor="@color/lightBlack"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/rvMenu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvSponsorCaption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/label_sponsor_caption"
+                android:textSize="10sp"
+                android:textColor="@color/gray"
+                app:layout_constraintTop_toBottomOf="@id/tvSponsor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="SmallSp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSponsor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                android:clipToPadding="false"
+                app:layout_constraintTop_toBottomOf="@id/tvSponsorCaption"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvVersion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{viewModel.version}"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/rvSponsor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="Last Updated" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
