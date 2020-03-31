@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/menuHome">
+
+    <fragment
+        android:id="@+id/menuHome"
+        android:name="id.rumahawan.fightcovid19.navigation.ui.fragment.FragmentHome"
+        android:label="@string/label_beranda"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/menuMessage"
+        android:name="id.rumahawan.fightcovid19.navigation.ui.fragment.FragmentInbox"
+        android:label="@string/label_pesan"
+        tools:layout="@layout/fragment_inbox" />
+
+</navigation>

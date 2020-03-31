@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Fight COVID-19</string>
+
+    <!--Navigation-->
+    <string name="label_beranda">Beranda</string>
+    <string name="label_muat_ulang">Muat ulang</string>
+    <string name="label_pesan">Pesan</string>
 </resources>

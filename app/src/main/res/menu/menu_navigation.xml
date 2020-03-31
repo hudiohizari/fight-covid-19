@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuHome"
+        android:title="@string/label_beranda"/>
+
+    <item
+        android:id="@+id/menuRefresh"
+        android:title="@string/label_muat_ulang" />
+
+    <item
+        android:id="@+id/menuMessage"
+        android:title="@string/label_pesan"/>
+
+</menu>
