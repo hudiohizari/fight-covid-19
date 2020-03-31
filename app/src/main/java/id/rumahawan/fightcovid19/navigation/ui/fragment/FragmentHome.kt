@@ -1,6 +1,8 @@
 package id.rumahawan.fightcovid19.navigation.ui.fragment
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -21,6 +23,8 @@ import id.rumahawan.fightcovid19.databinding.FragmentHomeBinding
 import id.rumahawan.fightcovid19.navigation.adapter.AdapterMenu
 import id.rumahawan.fightcovid19.navigation.bridge.InterfaceHome
 import id.rumahawan.fightcovid19.navigation.model.data.MenuItem
+import id.rumahawan.fightcovid19.navigation.ui.activity.ActivitySponsor
+import id.rumahawan.fightcovid19.navigation.ui.activity.ActivityWebView
 import id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelHome
 import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryHome
 import id.rumahawan.fightcovid19.utils.*
@@ -103,7 +107,40 @@ class FragmentHome:
                         ctx.apply {
                             if (item?.isActive == true) {
                                 when (item.img){
-                                    R.drawable.ic_hospital -> println(item.name)
+                                    R.drawable.ic_book -> {
+                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_EDUKASI)
+                                            startActivity(this)
+                                        }
+                                    }
+                                    R.drawable.ic_stethoscope -> {
+                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_DIAGNOSA_MANDIRI)
+                                            startActivity(this)
+                                        }
+                                    }
+                                    R.drawable.ic_database -> {
+                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_DATA_INTERNASIONAL)
+                                            startActivity(this)
+                                        }
+                                    }
+                                    R.drawable.ic_phone -> {
+                                        Intent(
+                                            Intent.ACTION_DIAL,
+                                            Uri.fromParts("tel", "119", null)
+                                        ).also { startActivity(it) }
+                                    }
+                                    R.drawable.img_dtpeduli -> {
+                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_DT_PEDULI_DONASI)
+                                            startActivity(this)
+                                        }
+                                    }
                                 }
                             } else{
                                 toast("${item?.name} sedang dalam pengembangan")
@@ -133,7 +170,41 @@ class FragmentHome:
                         ctx.apply {
                             if (item?.isActive == true) {
                                 when (item.img){
-                                    R.drawable.img_kemenkes -> println(item.name)
+                                    R.drawable.img_kemenkes -> {
+                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_KEMENKES)
+                                            startActivity(this)
+                                        }
+                                    }
+                                    R.drawable.img_bnbp -> {
+                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_BNBP)
+                                            startActivity(this)
+                                        }
+                                    }
+                                    R.drawable.img_prixa -> {
+                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_PRIXA)
+                                            startActivity(this)
+                                        }
+                                    }
+                                    R.drawable.img_idcloudhost -> {
+                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_ID_CLOUDHOST)
+                                            startActivity(this)
+                                        }
+                                    }
+                                    R.drawable.img_dramatelyu -> {
+                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_DRAMA_TELYU)
+                                            startActivity(this)
+                                        }
+                                    }
                                 }
                             } else{
                                 toast("${item?.name} sedang dalam pengembangan")
