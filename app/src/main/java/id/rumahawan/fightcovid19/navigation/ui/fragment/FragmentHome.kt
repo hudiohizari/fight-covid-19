@@ -87,10 +87,12 @@ class FragmentHome:
 
     @Suppress("UNUSED_ANONYMOUS_PARAMETER")
     private fun initView(savedInstanceState: Bundle?){
-        val tvHeader = SpannableString("Selamat datang di aplikasi #FightCOVID-19 Indonesia")
+        val tvHeader = SpannableString("#FightCOVID-19")
         tvHeader.setSpan(ForegroundColorSpan(ContextCompat.getColor(ctx, R.color.red)),
-            11, 25, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            0, tvHeader.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        binding.tvHeader.append("Selamat datang di aplikasi ")
         binding.tvHeader.append(tvHeader)
+        binding.tvHeader.append(" Indonesia")
 
         binding.mvMain.onCreate(savedInstanceState)
         binding.mvMain.getMapAsync(this)

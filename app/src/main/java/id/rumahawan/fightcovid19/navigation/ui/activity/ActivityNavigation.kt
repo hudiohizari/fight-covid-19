@@ -30,11 +30,16 @@ class ActivityNavigation : BaseActivity() {
         bnvMain.setOnNavigationItemSelectedListener {
             if(lastId != it.itemId) {
                 when (it.itemId) {
-                    R.id.menuHome -> navController.navigate(it.itemId)
-                    R.id.menuRefresh -> toast("Refresh pressed")
-                    R.id.menuInbox -> navController.navigate(it.itemId)
+                    R.id.menuHome -> {
+                        navController.navigate(it.itemId)
+                        lastId = it.itemId
+                    }
+                    R.id.menuRefresh -> navController.navigate(lastId)
+                    R.id.menuInbox -> {
+                        navController.navigate(it.itemId)
+                        lastId = it.itemId
+                    }
                 }
-                lastId = it.itemId
             }
             true
         }
@@ -44,6 +49,7 @@ class ActivityNavigation : BaseActivity() {
                 R.id.menuHome -> activateButton(btnHome)
                 R.id.menuInbox -> activateButton(btnInbox)
             }
+            lastId = destination.id
         }
     }
 
