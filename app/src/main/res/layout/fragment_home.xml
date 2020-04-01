@@ -33,8 +33,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Title"/>
 
-            <com.google.android.gms.maps.MapView
+            <id.rumahawan.fightcovid19.utils.customcomponent.CustomMapView
                 android:id="@+id/mvMain"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"

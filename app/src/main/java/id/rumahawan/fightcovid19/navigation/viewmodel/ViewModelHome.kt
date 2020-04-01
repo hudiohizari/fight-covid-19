@@ -21,10 +21,10 @@ class ViewModelHome(
     val version = MutableLiveData<String>().apply { value = "" }
 
     init {
-        getAllData()
+        getRatio()
     }
 
-    private fun getAllData() {
+    private fun getRatio() {
         bridge?.showLoading()
         Coroutines.main{
             try {
@@ -32,11 +32,25 @@ class ViewModelHome(
                     positive.value = it.confirmed.toString()
                     recovered.value = it.recovered.toString()
                     dead.value = it.deaths.toString()
-                    lastUpdated.value = "Last updated: ${it.lastUpdated}"
+                    lastUpdated.value = "Terakhir dipebarui: ${it.lastUpdated}"
                 }
                 repository.getVersion().also {
-                    version.value = "App Version ${it.appVersion}"
+                    version.value = "Aplikasi versi ${it.appVersion}"
                 }
+            } catch (e: ApiException) {
+                bridge?.showMessage(e.message)
+            } catch (e: NoInternetException) {
+                bridge?.showMessageLong(e.message)
+            }
+            bridge?.hideLoading()
+        }
+    }
+
+    fun getMapData() {
+        bridge?.showLoading()
+        Coroutines.main{
+            try {
+                bridge?.onProvincesLoaded(repository.getProvinces())
             } catch (e: ApiException) {
                 bridge?.showMessage(e.message)
             } catch (e: NoInternetException) {

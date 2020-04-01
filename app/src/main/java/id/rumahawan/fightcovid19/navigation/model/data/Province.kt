@@ -10,4 +10,8 @@ data class Province(
     @SerializedName("province_code")
     var provinceCode: String? = "",
     var size: Int? = 0
-)
+){
+    override fun toString(): String {
+        return "Province(positive=$positive, lat=$lat, lng=$lng, province=$province, provinceCode=$provinceCode, size=$size)"
+    }
+}

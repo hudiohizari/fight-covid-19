@@ -1,5 +1,6 @@
 package id.rumahawan.fightcovid19.navigation.repository
 
+import id.rumahawan.fightcovid19.navigation.model.response.ResponseProvince
 import id.rumahawan.fightcovid19.navigation.model.response.ResponseRatio
 import id.rumahawan.fightcovid19.navigation.model.response.ResponseVersion
 import id.rumahawan.fightcovid19.repomanager.local.LocalRequestManager
@@ -18,6 +19,10 @@ class RepositoryHome(
 
     suspend fun getRatio(): ResponseRatio {
         return apiRequest { remoteRequestManager.getRatio() }
+    }
+
+    suspend fun getProvinces(): ResponseProvince {
+        return apiRequest { remoteRequestManager.getProvinces() }
     }
 
 }

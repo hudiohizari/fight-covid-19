@@ -2,11 +2,15 @@ package id.rumahawan.fightcovid19.navigation.ui.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +20,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.MarkerOptions
 import id.rumahawan.fightcovid19.R
 import id.rumahawan.fightcovid19.databinding.FragmentHomeBinding
 import id.rumahawan.fightcovid19.navigation.adapter.AdapterMenu
 import id.rumahawan.fightcovid19.navigation.bridge.InterfaceHome
 import id.rumahawan.fightcovid19.navigation.model.data.MenuItem
+import id.rumahawan.fightcovid19.navigation.model.response.ResponseProvince
 import id.rumahawan.fightcovid19.navigation.ui.activity.ActivityWebView
 import id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelHome
 import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryHome
@@ -39,12 +49,18 @@ class FragmentHome:
     private lateinit var viewModel: ViewModelHome
     private val factory: ViewModelFactoryHome by instance()
 
+    private lateinit var map: GoogleMap
     private lateinit var ctx: Context
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
 
-        if(::binding.isInitialized) binding.mvMain.onSaveInstanceState(outState)
+    override fun onResume() {
+        super.onResume()
+        if(::binding.isInitialized) binding.mvMain.onResume()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        if(::binding.isInitialized) binding.mvMain.onDestroy()
     }
 
     override fun onCreateView(
@@ -69,8 +85,9 @@ class FragmentHome:
         return binding.root
     }
 
+    @Suppress("UNUSED_ANONYMOUS_PARAMETER")
     private fun initView(savedInstanceState: Bundle?){
-        val tvHeader = SpannableString("Welcome to #FightCOVID-19 App Indonesia")
+        val tvHeader = SpannableString("Selamat datang di aplikasi #FightCOVID-19 Indonesia")
         tvHeader.setSpan(ForegroundColorSpan(ContextCompat.getColor(ctx, R.color.red)),
             11, 25, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         binding.tvHeader.append(tvHeader)
@@ -137,6 +154,13 @@ class FragmentHome:
                                         launchNewActivityReturn(ActivityWebView::class.java).apply {
                                             putExtra(Constant.KEY_TITLE, item.name)
                                             putExtra(Constant.KEY_URL, Constant.URL_DT_PEDULI_DONASI)
+                                            startActivity(this)
+                                        }
+                                    }
+                                    R.drawable.ic_graphic -> {
+                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                            putExtra(Constant.KEY_TITLE, item.name)
+                                            putExtra(Constant.KEY_URL, Constant.URL_GRAFIK)
                                             startActivity(this)
                                         }
                                     }
@@ -212,71 +236,62 @@ class FragmentHome:
     }
 
     override fun onMapReady(p0: GoogleMap) {
-//        try {
-//            val success = p0.setMapStyle(MapStyleOptions.loadRawResourceStyle(context, R.raw.mapstyle))
-//            if (!success){
-//
-//                Log.e("TAG", "Style parsing failed")
-//            }
-//        }catch (e: Resources.NotFoundException) {
-//            Log.e("TAG", "Can't find style. Error: ", e)
-//        }
-//
-//
-//
-//        val bitmapDraw =
-//            ContextCompat.getDrawable(ctx, R.drawable.circle_red_translucent) as BitmapDrawable
-//        val b = bitmapDraw.bitmap
-//
-//        val bitmapDrawSafe =
-//            ContextCompat.getDrawable(ctx, R.drawable.circle_green_translucent) as BitmapDrawable
-//        val bSafe = bitmapDrawSafe.bitmap
-//
-//        val args = baseGetInstance<ResponseDataProvince?>("provinces")
-//
-//        var x = 0
-//        val size = args?.province?.size
-//        if(size != null) {
-//            while (x < size!!) {
-//                val positive = args.province.get(x).positive
-//
-//                val lat = args.province.get(x).lat?.toDouble()
-//                val lng = args.province.get(x).lng?.toDouble()
-//                val position = LatLng(lat!!, lng!!)
-//                val province = args.province.get(x).province
-//                var size = args.province[x].size
-//
-//                if (positive == 0) {
-//                    val scaleMarker = Bitmap.createScaledBitmap(bSafe, 10, 10, false)
-//                    p0.addMarker(
-//                        MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(scaleMarker)).position(
-//                            position
-//                        ).title(province + " Positif : " + positive + " orang")
-//                    )
-//                } else {
-//
-//                    val scaleMarker = Bitmap.createScaledBitmap(b, size, size, false)
-//                    p0.addMarker(
-//                        MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(scaleMarker)).position(
-//                            position
-//                        ).title(province + " Positif : " + positive + " orang")
-//                    )
-//                }
-//                x++
-//            }
-//        }
-//
-//
-//        val indonesia = LatLng(-3.630372, 117.93473)
-//        p0.moveCamera(CameraUpdateFactory.newLatLngZoom(indonesia, 3.45f))
+        map = p0
+
+        try {
+            val success = map.setMapStyle(MapStyleOptions.loadRawResourceStyle(
+                context, R.raw.map_style))
+            if (!success) Log.e("TAG", "Style parsing failed")
+        } catch (e: Resources.NotFoundException) {
+            Log.e("TAG", "Can't find style. Error: ", e)
+        }
+
+        val indonesia = LatLng(-3.630372, 117.93473)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(indonesia, 3.45f))
+
+        viewModel.getMapData()
+    }
+
+    override fun onProvincesLoaded(response: ResponseProvince) {
+        val size = response.province?.size
+        if(size != null) {
+            val bitRed = ((ContextCompat.getDrawable(context!!,
+                R.drawable.img_marker_red)) as BitmapDrawable).bitmap
+            val bitGreen = ((ContextCompat.getDrawable(context!!,
+                R.drawable.img_marker_green)) as BitmapDrawable).bitmap
+
+            for (i in 0 until size) {
+                response.province
+                val positive = response.province?.get(i)?.positive
+
+                val lat = response.province?.get(i)?.lat?.toDouble() ?: 0.0
+                val lng = response.province?.get(i)?.lng?.toDouble() ?: 0.0
+                val position = LatLng(lat, lng)
+                val province = response.province?.get(i)?.province
+                val s = response.province?.get(i)?.size ?: 0
+
+                val markerIcon = if (positive == 0) {
+                    Bitmap.createScaledBitmap(bitGreen, 10, 10, false)
+                } else {
+                    Bitmap.createScaledBitmap(bitRed, s, s, false)
+                }
+
+                map.addMarker(
+                    MarkerOptions()
+                        .icon(BitmapDescriptorFactory.fromBitmap(markerIcon))
+                        .position(position)
+                        .title("$province Positif : $positive orang")
+                )
+            }
+        }
     }
 
     override fun showLoading() {
-        ctx.toast("Loading start")
+//        ctx.toast("Loading start")
     }
 
     override fun hideLoading() {
-        ctx.toast("Loading stop")
+//        ctx.toast("Loading stop")
     }
 
     override fun showMessage(message: String?) {
