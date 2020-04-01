@@ -7,18 +7,24 @@ import android.os.Build
 import id.rumahawan.fightcovid19.utils.NoInternetException
 import okhttp3.Interceptor
 import okhttp3.Response
+import java.net.ConnectException
+import java.net.SocketTimeoutException
 
 class NetworkConnectionInterceptor(context: Context): Interceptor{
 
     private val appContext = context.applicationContext
 
     override fun intercept(chain: Interceptor.Chain): Response {
-
         if (!isInternetAvailable())
             throw NoInternetException("Perangkat tidak terhubung ke internet")
 
-        return chain.proceed(chain.request())
-
+        try{
+            return chain.proceed(chain.request())
+        } catch (e: SocketTimeoutException) {
+            throw NoInternetException("Terjadi kesalahan pada server")
+        } catch (e: ConnectException) {
+            throw NoInternetException("Terjadi kesalahan pada server")
+        }
     }
 
     private fun isInternetAvailable(): Boolean {

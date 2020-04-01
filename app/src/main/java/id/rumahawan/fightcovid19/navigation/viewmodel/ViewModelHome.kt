@@ -14,11 +14,11 @@ class ViewModelHome(
 
     var bridge: InterfaceHome? = null
 
-    val positive = MutableLiveData<String>().apply { value = "" }
-    val recovered = MutableLiveData<String>().apply { value = "" }
-    val dead = MutableLiveData<String>().apply { value = "" }
-    val lastUpdated = MutableLiveData<String>().apply { value = "" }
-    val version = MutableLiveData<String>().apply { value = "" }
+    val positive = MutableLiveData<String>().apply { value = "0" }
+    val recovered = MutableLiveData<String>().apply { value = "0" }
+    val dead = MutableLiveData<String>().apply { value = "0" }
+    val lastUpdated = MutableLiveData<String>().apply { value = "-" }
+    val version = MutableLiveData<String>().apply { value = "-" }
 
     init {
         getRatio()
