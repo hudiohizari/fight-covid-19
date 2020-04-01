@@ -18,16 +18,19 @@ import com.google.android.gms.maps.model.MarkerOptions
 import id.rumahawan.fightcovid19.R
 import id.rumahawan.fightcovid19.databinding.ActivityReferenceBinding
 import id.rumahawan.fightcovid19.navigation.bridge.InterfaceRujukan
+import id.rumahawan.fightcovid19.navigation.model.data.Hospital
 import id.rumahawan.fightcovid19.navigation.model.data.Province
 import id.rumahawan.fightcovid19.navigation.model.response.ResponseHospital
 import id.rumahawan.fightcovid19.navigation.ui.bottomsheet.BottomSheetHospitalDetail
 import id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelReference
 import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryReference
-import id.rumahawan.fightcovid19.utils.*
+import id.rumahawan.fightcovid19.utils.BaseActivity
+import id.rumahawan.fightcovid19.utils.getBitmap
+import id.rumahawan.fightcovid19.utils.snackbar
+import id.rumahawan.fightcovid19.utils.snackbarLong
 import mumayank.com.airlocationlibrary.AirLocation
 import org.kodein.di.generic.instance
 import java.util.*
-
 
 class ActivityReference:
     BaseActivity(),
@@ -108,6 +111,7 @@ class ActivityReference:
     }
 
     override fun onHospitalsSucceed(response: ResponseHospital) {
+        map?.clear()
         for (hospital in response.hospitals ?: mutableListOf()) {
             val bitmap = getBitmap(R.drawable.ic_hospital)
             val lat = hospital.lat?.toDouble() ?: 0.0
@@ -121,19 +125,27 @@ class ActivityReference:
                     .title(hospital.name)
             )
         }
-        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(selectedProvinceLocation, 10f))
+        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(selectedProvinceLocation, 6f))
 
         map?.setOnMarkerClickListener {
             if (!it.title.equals("Lokasi anda", true)){
-                searchProvince(it.title)
-                val dialog = BottomSheetHospitalDetail()
+                val dialog = BottomSheetHospitalDetail(searchHospital(it.title))
                 dialog.show(supportFragmentManager, dialog.tag)
                 true
             } else { false }
         }
     }
 
-    override fun getLocation() {
+    private fun searchHospital(title: String): Hospital{
+        for(hospitals in viewModel.getHospitalList()){
+            if (hospitals.name.equals(title, true)){
+                return hospitals
+            }
+        }
+        return Hospital.empty()
+    }
+
+    override fun getLocation(isMoveToMarker: Boolean) {
         map?.clear()
         airLocation = AirLocation(this,
             shouldWeRequestPermissions = true,
@@ -154,7 +166,7 @@ class ActivityReference:
                             .position(indonesia)
                             .title("Lokasi anda")
                     )
-                    map?.moveCamera(CameraUpdateFactory.newLatLngZoom(indonesia, 15f))
+                    if (isMoveToMarker) map?.moveCamera(CameraUpdateFactory.newLatLngZoom(indonesia, 10f))
                 }
 
                 override fun onFailed(locationFailedEnum: AirLocation.LocationFailedEnum) {
@@ -183,6 +195,6 @@ class ActivityReference:
 
     override fun onMapReady(p0: GoogleMap) {
         map = p0
-        getLocation()
+        getLocation(true)
     }
 }

@@ -4,6 +4,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.rumahawan.fightcovid19.navigation.bridge.InterfaceRujukan
+import id.rumahawan.fightcovid19.navigation.model.data.Hospital
 import id.rumahawan.fightcovid19.navigation.model.data.Province
 import id.rumahawan.fightcovid19.navigation.repository.RepositoryReference
 import id.rumahawan.fightcovid19.utils.ApiException
@@ -17,6 +18,10 @@ class ViewModelReference(
     var bridge: InterfaceRujukan? = null
 
     private val provinces = MutableLiveData<MutableList<Province>>()
+        .apply {
+            value = mutableListOf()
+        }
+    private val hospitals = MutableLiveData<MutableList<Hospital>>()
         .apply {
             value = mutableListOf()
         }
@@ -62,7 +67,10 @@ class ViewModelReference(
         bridge?.showLoading()
         Coroutines.main{
             try {
-                bridge?.onHospitalsSucceed(repository.getHospitals(provinceId, lat, lng))
+                val hospitalList = repository.getHospitals(provinceId, lat, lng)
+                bridge?.getLocation(false)
+                bridge?.onHospitalsSucceed(hospitalList)
+                hospitals.value = hospitalList.hospitals
             } catch (e: ApiException) {
                 bridge?.showMessage(e.message)
             } catch (e: NoInternetException) {
@@ -72,8 +80,12 @@ class ViewModelReference(
         }
     }
 
+    fun getHospitalList(): MutableList<Hospital>{
+        return hospitals.value ?: mutableListOf()
+    }
+
     @Suppress("UNUSED_PARAMETER")
     fun onRefreshPressed(view: View){
-        bridge?.getLocation()
+        bridge?.getLocation(true)
     }
 }

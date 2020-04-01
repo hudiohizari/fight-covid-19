@@ -7,4 +7,10 @@ class Hospital(
     var telephone: String? = "",
     var address: String? = "",
     var distance: Double? = 0.0
-)
+){
+    companion object{
+        fun empty(): Hospital{
+            return Hospital("", "", "", "", "", 0.0)
+        }
+    }
+}

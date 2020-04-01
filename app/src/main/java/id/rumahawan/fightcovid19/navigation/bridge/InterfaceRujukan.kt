@@ -5,7 +5,7 @@ import id.rumahawan.fightcovid19.utils.BaseInterfaceRemoteViewModel
 
 interface InterfaceRujukan: BaseInterfaceRemoteViewModel{
     fun onBackButton()
-    fun getLocation()
+    fun getLocation(isMoveToMarker: Boolean)
     fun setListProvinceInput(list: List<String>)
     fun onHospitalsSucceed(response: ResponseHospital)
 }
