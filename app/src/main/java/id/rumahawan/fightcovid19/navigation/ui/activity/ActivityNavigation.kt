@@ -15,7 +15,9 @@ import kotlinx.android.synthetic.main.activity_navigation.*
 class ActivityNavigation : BaseActivity() {
 
     private lateinit var navController: NavController
+
     private var twice = false
+    private var lastId = R.id.menuHome
 
     @Suppress("UNUSED_ANONYMOUS_PARAMETER")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,18 +28,22 @@ class ActivityNavigation : BaseActivity() {
 
         activateButton(btnHome)
         bnvMain.setOnNavigationItemSelectedListener {
-            when(it.itemId) {
-                R.id.menuHome -> {
-                    navController.navigate(it.itemId)
-                    activateButton(btnHome)
+            if(lastId != it.itemId) {
+                when (it.itemId) {
+                    R.id.menuHome -> navController.navigate(it.itemId)
+                    R.id.menuRefresh -> toast("Refresh pressed")
+                    R.id.menuInbox -> navController.navigate(it.itemId)
                 }
-                R.id.menuRefresh -> toast("Refresh pressed")
-                R.id.menuMessage -> {
-                    navController.navigate(it.itemId)
-                    activateButton(btnInbox)
-                }
+                lastId = it.itemId
             }
             true
+        }
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when (destination.id) {
+                R.id.menuHome -> activateButton(btnHome)
+                R.id.menuInbox -> activateButton(btnInbox)
+            }
         }
     }
 

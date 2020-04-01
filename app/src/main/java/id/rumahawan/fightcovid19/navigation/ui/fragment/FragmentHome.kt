@@ -23,7 +23,6 @@ import id.rumahawan.fightcovid19.databinding.FragmentHomeBinding
 import id.rumahawan.fightcovid19.navigation.adapter.AdapterMenu
 import id.rumahawan.fightcovid19.navigation.bridge.InterfaceHome
 import id.rumahawan.fightcovid19.navigation.model.data.MenuItem
-import id.rumahawan.fightcovid19.navigation.ui.activity.ActivitySponsor
 import id.rumahawan.fightcovid19.navigation.ui.activity.ActivityWebView
 import id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelHome
 import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryHome
@@ -171,38 +170,33 @@ class FragmentHome:
                             if (item?.isActive == true) {
                                 when (item.img){
                                     R.drawable.img_kemenkes -> {
-                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_KEMENKES)
-                                            startActivity(this)
+                                        Intent(Intent.ACTION_VIEW).also {
+                                            it.data = Uri.parse(Constant.URL_KEMENKES)
+                                            startActivity(it)
                                         }
                                     }
                                     R.drawable.img_bnbp -> {
-                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_BNBP)
-                                            startActivity(this)
+                                        Intent(Intent.ACTION_VIEW).also {
+                                            it.data = Uri.parse(Constant.URL_BNBP)
+                                            startActivity(it)
                                         }
                                     }
                                     R.drawable.img_prixa -> {
-                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_PRIXA)
-                                            startActivity(this)
+                                        Intent(Intent.ACTION_VIEW).also {
+                                            it.data = Uri.parse(Constant.URL_PRIXA)
+                                            startActivity(it)
                                         }
                                     }
                                     R.drawable.img_idcloudhost -> {
-                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_ID_CLOUDHOST)
-                                            startActivity(this)
+                                        Intent(Intent.ACTION_VIEW).also {
+                                            it.data = Uri.parse(Constant.URL_ID_CLOUDHOST)
+                                            startActivity(it)
                                         }
                                     }
                                     R.drawable.img_dramatelyu -> {
-                                        launchNewActivityReturn(ActivitySponsor::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_DRAMA_TELYU)
-                                            startActivity(this)
+                                        Intent(Intent.ACTION_VIEW).also {
+                                            it.data = Uri.parse(Constant.URL_DRAMA_TELYU)
+                                            startActivity(it)
                                         }
                                     }
                                 }

@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".navigation.ui.activity.ActivityWebView"/>
-        <activity android:name=".navigation.ui.activity.ActivitySponsor"/>
         <activity android:name=".navigation.ui.activity.ActivityNavigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

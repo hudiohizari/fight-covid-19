@@ -17,5 +17,9 @@
     <string name="label_sponsor_caption">Data yang diambil dari open source sumber terpercaya dan sponsor yang membantu</string>
 
     <!--Google maps-->
+    <string name="label_inbox_kosong">Belum ada pesan untuk anda, jangan bersedih.</string>
+    <string name="label_inbox_kosong_caption">Tungu update dari aplikasi kami ya, untuk mendapatkan update terbaru terkait COVID-19, dengan tetap #dirumahaja</string>
+
+    <!--Google maps-->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyB8gAag_Q7QzwnBFoVcF5Z8PZonPnYc1ow</string>
 </resources>

@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/menuMessage"
+        android:id="@+id/menuInbox"
         android:name="id.rumahawan.fightcovid19.navigation.ui.fragment.FragmentInbox"
         android:label="@string/label_pesan"
         tools:layout="@layout/fragment_inbox" />
