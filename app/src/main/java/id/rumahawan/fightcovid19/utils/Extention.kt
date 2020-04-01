@@ -2,10 +2,13 @@ package id.rumahawan.fightcovid19.utils
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.net.Uri
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import kotlin.math.roundToInt
 
@@ -38,6 +41,20 @@ fun Context.toast(message: String?){
 
 fun Context.getPx(dp: Int): Int {
     return (dp * this.resources.displayMetrics.density).roundToInt()
+}
+
+fun Context.getBitmap(drawableRes: Int): Bitmap {
+    val drawable = ContextCompat.getDrawable(this, drawableRes)!!
+    val canvas = Canvas()
+    val bitmap = Bitmap.createBitmap(
+        drawable.intrinsicWidth,
+        drawable.intrinsicHeight,
+        Bitmap.Config.ARGB_8888
+    )
+    canvas.setBitmap(bitmap)
+    drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+    drawable.draw(canvas)
+    return bitmap
 }
 
 fun View.snackbar(message: String?){

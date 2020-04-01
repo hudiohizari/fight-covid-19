@@ -14,4 +14,10 @@ data class Province(
     override fun toString(): String {
         return "Province(positive=$positive, lat=$lat, lng=$lng, province=$province, provinceCode=$provinceCode, size=$size)"
     }
+
+    companion object{
+        fun empty(): Province{
+            return Province(0, "", "", "", "", 0)
+        }
+    }
 }

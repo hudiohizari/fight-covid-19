@@ -33,6 +33,7 @@ import id.rumahawan.fightcovid19.navigation.adapter.AdapterMenu
 import id.rumahawan.fightcovid19.navigation.bridge.InterfaceHome
 import id.rumahawan.fightcovid19.navigation.model.data.MenuItem
 import id.rumahawan.fightcovid19.navigation.model.response.ResponseProvince
+import id.rumahawan.fightcovid19.navigation.ui.activity.ActivityReference
 import id.rumahawan.fightcovid19.navigation.ui.activity.ActivityWebView
 import id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelHome
 import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryHome
@@ -51,7 +52,6 @@ class FragmentHome:
 
     private lateinit var map: GoogleMap
     private lateinit var ctx: Context
-
 
     override fun onResume() {
         super.onResume()
@@ -125,6 +125,7 @@ class FragmentHome:
                         ctx.apply {
                             if (item?.isActive == true) {
                                 when (item.img){
+                                    R.drawable.ic_hospital -> launchNewActivity(ActivityReference::class.java)
                                     R.drawable.ic_book -> {
                                         launchNewActivityReturn(ActivityWebView::class.java).apply {
                                             putExtra(Constant.KEY_TITLE, item.name)
@@ -255,7 +256,7 @@ class FragmentHome:
     }
 
     override fun onProvincesLoaded(response: ResponseProvince) {
-        val size = response.province?.size
+        val size = response.provinces?.size
         if(size != null) {
             val bitRed = ((ContextCompat.getDrawable(context!!,
                 R.drawable.img_marker_red)) as BitmapDrawable).bitmap
@@ -263,14 +264,14 @@ class FragmentHome:
                 R.drawable.img_marker_green)) as BitmapDrawable).bitmap
 
             for (i in 0 until size) {
-                response.province
-                val positive = response.province?.get(i)?.positive
+                response.provinces
+                val positive = response.provinces?.get(i)?.positive
 
-                val lat = response.province?.get(i)?.lat?.toDouble() ?: 0.0
-                val lng = response.province?.get(i)?.lng?.toDouble() ?: 0.0
+                val lat = response.provinces?.get(i)?.lat?.toDouble() ?: 0.0
+                val lng = response.provinces?.get(i)?.lng?.toDouble() ?: 0.0
                 val position = LatLng(lat, lng)
-                val province = response.province?.get(i)?.province
-                val s = response.province?.get(i)?.size ?: 0
+                val province = response.provinces?.get(i)?.province
+                val s = response.provinces?.get(i)?.size ?: 0
 
                 val markerIcon = if (positive == 0) {
                     Bitmap.createScaledBitmap(bitGreen, 10, 10, false)

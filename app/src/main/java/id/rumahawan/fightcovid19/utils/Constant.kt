@@ -25,7 +25,7 @@ object Constant {
             MenuItem(
                 R.drawable.ic_hospital,
                 "RS. Rujukan",
-                false
+                true
             )
         )
         list.add(

@@ -2,7 +2,9 @@ package id.rumahawan.fightcovid19
 
 import android.app.Application
 import id.rumahawan.fightcovid19.navigation.repository.RepositoryHome
+import id.rumahawan.fightcovid19.navigation.repository.RepositoryReference
 import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryHome
+import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryReference
 import id.rumahawan.fightcovid19.repomanager.local.LocalRequestManager
 import id.rumahawan.fightcovid19.repomanager.remote.NetworkConnectionInterceptor
 import id.rumahawan.fightcovid19.repomanager.remote.RemoteRequestManager
@@ -27,10 +29,16 @@ class Application: Application(), KodeinAware {
         bind() from singleton { LocalRequestManager(instance()) }
 
         /*
-        * PROJECT WIDE
+        * Home
         */
-        bind() from singleton { RepositoryHome(instance(), instance()) }
+        bind() from singleton { RepositoryHome(instance()) }
         bind() from provider { ViewModelFactoryHome(instance()) }
+
+        /*
+        * Reference
+        */
+        bind() from singleton { RepositoryReference(instance()) }
+        bind() from provider { ViewModelFactoryReference(instance()) }
 
     }
 }

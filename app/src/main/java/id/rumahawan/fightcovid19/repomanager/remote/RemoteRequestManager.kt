@@ -1,6 +1,7 @@
 package id.rumahawan.fightcovid19.repomanager.remote
 
 import id.rumahawan.fightcovid19.BuildConfig
+import id.rumahawan.fightcovid19.navigation.model.response.ResponseHospital
 import id.rumahawan.fightcovid19.navigation.model.response.ResponseProvince
 import id.rumahawan.fightcovid19.navigation.model.response.ResponseRatio
 import id.rumahawan.fightcovid19.navigation.model.response.ResponseVersion
@@ -10,6 +11,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import java.util.concurrent.TimeUnit
 
 interface RemoteRequestManager {
@@ -22,6 +24,13 @@ interface RemoteRequestManager {
 
     @GET("provincess")
     suspend fun getProvinces(): Response<ResponseProvince>
+
+    @GET("hospital/provincess/{provence_id}/{lat}/{lng}")
+    suspend fun getHospitals(
+        @Path("provence_id") provenceId: String,
+        @Path("lat") lat: Double,
+        @Path("lng") lng: Double
+    ): Response<ResponseHospital>
 
     companion object{
         operator fun invoke(

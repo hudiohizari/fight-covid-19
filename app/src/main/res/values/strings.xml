@@ -20,4 +20,11 @@
     <string name="label_inbox_kosong">Belum ada pesan untuk anda, jangan bersedih.</string>
     <string name="label_inbox_kosong_caption">Tungu update dari aplikasi kami ya, untuk mendapatkan update terbaru terkait COVID-19, dengan tetap #dirumahaja</string>
 
+    <!--Inbox-->
+    <string name="label_rs_rujukan">RS Rujukan</string>
+    <string name="label_pilih_provinsi">Pilih provinsi</string>
+    <string name="label_lihat_semua">Lihat semua</string>
+    <string name="label_header_rujukan">Rumah sakit rujukan</string>
+    <string name="label_caption_rujukan">Temukan rumah sakit untuk melawan COVID-19</string>
+
 </resources>

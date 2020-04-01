@@ -1,5 +1,6 @@
 package id.rumahawan.fightcovid19.repomanager.remote
 
+import id.rumahawan.fightcovid19.utils.ApiException
 import retrofit2.Response
 
 abstract class SafeApiRequest {
@@ -21,7 +22,7 @@ abstract class SafeApiRequest {
 //            }
             return response.body()!!
         } else {
-            throw Exception("Error: (${response.code()})${response.message()}")
+            throw ApiException("Error: (${response.code()})${response.message()}")
         }
     }
 
