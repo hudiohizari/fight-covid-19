@@ -20,11 +20,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".navigation.ui.activity.ActivityTrackOdp"/>
-        <activity android:name=".navigation.ui.activity.ActivityHospitalList" />
-        <activity android:name=".navigation.ui.activity.ActivityReference" />
-        <activity android:name=".navigation.ui.activity.ActivityWebView" />
-        <activity android:name=".navigation.ui.activity.ActivityNavigation">
+        <activity android:name="id.rumahawan.fightcovid19.features.tracking.ui.ActivityTrackOdp"/>
+        <activity android:name="id.rumahawan.fightcovid19.features.main.ui.activity.ActivityHospitalList" />
+        <activity android:name="id.rumahawan.fightcovid19.features.main.ui.activity.ActivityReference" />
+        <activity android:name="id.rumahawan.fightcovid19.features.main.ui.activity.ActivityWebView" />
+        <activity android:name="id.rumahawan.fightcovid19.features.main.ui.activity.ActivityNavigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

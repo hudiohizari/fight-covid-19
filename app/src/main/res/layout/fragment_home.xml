@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelHome" />
+            type="id.rumahawan.fightcovid19.features.main.viewmodel.ViewModelHome" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -16,7 +16,7 @@
         android:paddingBottom="32dp"
         android:clipToPadding="false"
         android:background="@android:color/white"
-        tools:context=".navigation.ui.fragment.FragmentHome">
+        tools:context=".features.main.ui.fragment.FragmentHome">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

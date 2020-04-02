@@ -1,10 +1,10 @@
 package id.rumahawan.fightcovid19
 
 import android.app.Application
-import id.rumahawan.fightcovid19.navigation.repository.RepositoryHome
-import id.rumahawan.fightcovid19.navigation.repository.RepositoryReference
-import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryHome
-import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryReference
+import id.rumahawan.fightcovid19.features.main.repository.RepositoryHome
+import id.rumahawan.fightcovid19.features.main.repository.RepositoryReference
+import id.rumahawan.fightcovid19.features.main.viewmodelfactory.ViewModelFactoryHome
+import id.rumahawan.fightcovid19.features.main.viewmodelfactory.ViewModelFactoryReference
 import id.rumahawan.fightcovid19.repomanager.local.LocalRequestManager
 import id.rumahawan.fightcovid19.repomanager.remote.NetworkConnectionInterceptor
 import id.rumahawan.fightcovid19.repomanager.remote.RemoteRequestManager

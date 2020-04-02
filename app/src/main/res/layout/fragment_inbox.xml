@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".navigation.ui.fragment.FragmentInbox">
+    tools:context=".features.main.ui.fragment.FragmentInbox">
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/gEmptyView"

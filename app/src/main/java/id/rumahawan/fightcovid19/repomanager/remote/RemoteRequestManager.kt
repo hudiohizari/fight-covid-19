@@ -1,10 +1,10 @@
 package id.rumahawan.fightcovid19.repomanager.remote
 
 import id.rumahawan.fightcovid19.BuildConfig
-import id.rumahawan.fightcovid19.navigation.model.response.ResponseHospital
-import id.rumahawan.fightcovid19.navigation.model.response.ResponseProvince
-import id.rumahawan.fightcovid19.navigation.model.response.ResponseRatio
-import id.rumahawan.fightcovid19.navigation.model.response.ResponseVersion
+import id.rumahawan.fightcovid19.features.main.model.response.ResponseHospital
+import id.rumahawan.fightcovid19.features.main.model.response.ResponseProvince
+import id.rumahawan.fightcovid19.features.main.model.response.ResponseRatio
+import id.rumahawan.fightcovid19.features.main.model.response.ResponseVersion
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response

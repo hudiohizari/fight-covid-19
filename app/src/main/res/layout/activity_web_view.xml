@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelWebView" />
+            type="id.rumahawan.fightcovid19.features.main.viewmodel.ViewModelWebView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".navigation.ui.activity.ActivityWebView">
+        tools:context=".features.main.ui.activity.ActivityWebView">
 
         <include
             android:id="@+id/include"

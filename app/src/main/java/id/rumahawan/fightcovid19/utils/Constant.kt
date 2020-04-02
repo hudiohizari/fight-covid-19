@@ -1,7 +1,7 @@
 package id.rumahawan.fightcovid19.utils
 
 import id.rumahawan.fightcovid19.R
-import id.rumahawan.fightcovid19.navigation.model.data.MenuItem
+import id.rumahawan.fightcovid19.features.main.model.data.MenuItem
 
 object Constant {
 

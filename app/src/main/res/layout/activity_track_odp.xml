@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelTrackOdp" />
+            type="id.rumahawan.fightcovid19.features.tracking.viewmodel.ViewModelTrackOdp" />
     </data>
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".navigation.ui.activity.ActivityTrackOdp">
+        tools:context=".features.tracking.ui.ActivityTrackOdp">
 
         <include
             android:id="@+id/include"
