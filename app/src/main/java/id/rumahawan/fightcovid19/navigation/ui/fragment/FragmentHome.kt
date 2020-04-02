@@ -31,6 +31,7 @@ import id.rumahawan.fightcovid19.navigation.bridge.InterfaceHome
 import id.rumahawan.fightcovid19.navigation.model.data.MenuItem
 import id.rumahawan.fightcovid19.navigation.model.response.ResponseProvince
 import id.rumahawan.fightcovid19.navigation.ui.activity.ActivityReference
+import id.rumahawan.fightcovid19.navigation.ui.activity.ActivityTrackOdp
 import id.rumahawan.fightcovid19.navigation.ui.activity.ActivityWebView
 import id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelHome
 import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryHome
@@ -117,63 +118,66 @@ class FragmentHome:
                 itemAnimator = DefaultItemAnimator()
                 adapter = AdapterMenu(Constant.getHomeMenu(), R.layout.item_menu)
                 this.adapter = adapter
-                adapter.setInterface(object: AdapterMenu.Interface{
-                    override fun onClickItemProduk(item: MenuItem?, position: Int) {
-                        ctx.apply {
-                            if (item?.isActive == true) {
-                                when (item.img){
-                                    R.drawable.ic_hospital -> launchNewActivity(ActivityReference::class.java)
-                                    R.drawable.ic_book -> {
-                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_EDUKASI)
-                                            startActivity(this)
-                                        }
-                                    }
-                                    R.drawable.ic_stethoscope -> {
-                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_DIAGNOSA_MANDIRI)
-                                            startActivity(this)
-                                        }
-                                    }
-                                    R.drawable.ic_database -> {
-                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_DATA_INTERNASIONAL)
-                                            startActivity(this)
-                                        }
-                                    }
-                                    R.drawable.ic_phone -> {
-                                        Intent(
-                                            Intent.ACTION_DIAL,
-                                            Uri.fromParts("tel", "119", null)
-                                        ).also { startActivity(it) }
-                                    }
-                                    R.drawable.img_dtpeduli -> {
-                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_DT_PEDULI_DONASI)
-                                            startActivity(this)
-                                        }
-                                    }
-                                    R.drawable.ic_graphic -> {
-                                        launchNewActivityReturn(ActivityWebView::class.java).apply {
-                                            putExtra(Constant.KEY_TITLE, item.name)
-                                            putExtra(Constant.KEY_URL, Constant.URL_GRAFIK)
-                                            startActivity(this)
-                                        }
-                                    }
-                                }
-                            } else{
-                                toast("${item?.name} sedang dalam pengembangan")
-                            }
-                        }
-                    }
-                })
+                adapter.setInterface(interfaceMenu)
             }
         }
         return adapter
+    }
+
+    private val interfaceMenu = object: AdapterMenu.Interface{
+        override fun onClickItemProduk(item: MenuItem?, position: Int) {
+            ctx.apply {
+                if (item?.isActive == true) {
+                    when (item.img){
+                        R.drawable.ic_hospital -> launchNewActivity(ActivityReference::class.java)
+                        R.drawable.ic_book -> {
+                            launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                putExtra(Constant.KEY_TITLE, item.name)
+                                putExtra(Constant.KEY_URL, Constant.URL_EDUKASI)
+                                startActivity(this)
+                            }
+                        }
+                        R.drawable.ic_stethoscope -> {
+                            launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                putExtra(Constant.KEY_TITLE, item.name)
+                                putExtra(Constant.KEY_URL, Constant.URL_DIAGNOSA_MANDIRI)
+                                startActivity(this)
+                            }
+                        }
+                        R.drawable.ic_database -> {
+                            launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                putExtra(Constant.KEY_TITLE, item.name)
+                                putExtra(Constant.KEY_URL, Constant.URL_DATA_INTERNASIONAL)
+                                startActivity(this)
+                            }
+                        }
+                        R.drawable.ic_phone -> {
+                            Intent(
+                                Intent.ACTION_DIAL,
+                                Uri.fromParts("tel", "119", null)
+                            ).also { startActivity(it) }
+                        }
+                        R.drawable.img_dtpeduli -> {
+                            launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                putExtra(Constant.KEY_TITLE, item.name)
+                                putExtra(Constant.KEY_URL, Constant.URL_DT_PEDULI_DONASI)
+                                startActivity(this)
+                            }
+                        }
+                        R.drawable.ic_map -> launchNewActivity(ActivityTrackOdp::class.java)
+                        R.drawable.ic_graphic -> {
+                            launchNewActivityReturn(ActivityWebView::class.java).apply {
+                                putExtra(Constant.KEY_TITLE, item.name)
+                                putExtra(Constant.KEY_URL, Constant.URL_GRAFIK)
+                                startActivity(this)
+                            }
+                        }
+                    }
+                } else{
+                    toast("${item?.name} sedang dalam pengembangan")
+                }
+            }
+        }
     }
 
     private fun getSponsorAdapter(): AdapterMenu {
@@ -188,51 +192,53 @@ class FragmentHome:
                 itemAnimator = DefaultItemAnimator()
                 adapter = AdapterMenu(Constant.getHomeSponsor(), R.layout.item_sponsor)
                 this.adapter = adapter
-                adapter.setInterface(object: AdapterMenu.Interface{
-                    override fun onClickItemProduk(item: MenuItem?, position: Int) {
-                        ctx.apply {
-                            if (item?.isActive == true) {
-                                when (item.img){
-                                    R.drawable.img_kemenkes -> {
-                                        Intent(Intent.ACTION_VIEW).also {
-                                            it.data = Uri.parse(Constant.URL_KEMENKES)
-                                            startActivity(it)
-                                        }
-                                    }
-                                    R.drawable.img_bnbp -> {
-                                        Intent(Intent.ACTION_VIEW).also {
-                                            it.data = Uri.parse(Constant.URL_BNBP)
-                                            startActivity(it)
-                                        }
-                                    }
-                                    R.drawable.img_prixa -> {
-                                        Intent(Intent.ACTION_VIEW).also {
-                                            it.data = Uri.parse(Constant.URL_PRIXA)
-                                            startActivity(it)
-                                        }
-                                    }
-                                    R.drawable.img_idcloudhost -> {
-                                        Intent(Intent.ACTION_VIEW).also {
-                                            it.data = Uri.parse(Constant.URL_ID_CLOUDHOST)
-                                            startActivity(it)
-                                        }
-                                    }
-                                    R.drawable.img_dramatelyu -> {
-                                        Intent(Intent.ACTION_VIEW).also {
-                                            it.data = Uri.parse(Constant.URL_DRAMA_TELYU)
-                                            startActivity(it)
-                                        }
-                                    }
-                                }
-                            } else{
-                                toast("${item?.name} sedang dalam pengembangan")
-                            }
-                        }
-                    }
-                })
+                adapter.setInterface(interfaceSponsor)
             }
         }
         return adapter
+    }
+
+    private val interfaceSponsor = object: AdapterMenu.Interface{
+        override fun onClickItemProduk(item: MenuItem?, position: Int) {
+            ctx.apply {
+                if (item?.isActive == true) {
+                    when (item.img){
+                        R.drawable.img_kemenkes -> {
+                            Intent(Intent.ACTION_VIEW).also {
+                                it.data = Uri.parse(Constant.URL_KEMENKES)
+                                startActivity(it)
+                            }
+                        }
+                        R.drawable.img_bnbp -> {
+                            Intent(Intent.ACTION_VIEW).also {
+                                it.data = Uri.parse(Constant.URL_BNBP)
+                                startActivity(it)
+                            }
+                        }
+                        R.drawable.img_prixa -> {
+                            Intent(Intent.ACTION_VIEW).also {
+                                it.data = Uri.parse(Constant.URL_PRIXA)
+                                startActivity(it)
+                            }
+                        }
+                        R.drawable.img_idcloudhost -> {
+                            Intent(Intent.ACTION_VIEW).also {
+                                it.data = Uri.parse(Constant.URL_ID_CLOUDHOST)
+                                startActivity(it)
+                            }
+                        }
+                        R.drawable.img_dramatelyu -> {
+                            Intent(Intent.ACTION_VIEW).also {
+                                it.data = Uri.parse(Constant.URL_DRAMA_TELYU)
+                                startActivity(it)
+                            }
+                        }
+                    }
+                } else{
+                    toast("${item?.name} sedang dalam pengembangan")
+                }
+            }
+        }
     }
 
     override fun onMapReady(p0: GoogleMap) {

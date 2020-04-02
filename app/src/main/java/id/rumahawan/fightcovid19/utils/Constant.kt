@@ -68,7 +68,7 @@ object Constant {
             MenuItem(
                 R.drawable.ic_map,
                 "Lacak ODS/ODP Belitung",
-                false
+                true
             )
         )
         list.add(
@@ -120,6 +120,32 @@ object Constant {
             )
         )
 
+        return list
+    }
+
+    fun getMenuOdp(): MutableList<MenuItem>{
+        val list = mutableListOf<MenuItem>()
+        list.add(
+            MenuItem(
+                R.drawable.ic_hospital,
+                "RS. Rujukan",
+                true
+            )
+        )
+        list.add(
+            MenuItem(
+                R.drawable.ic_book,
+                "Edukasi Covid 19",
+                true
+            )
+        )
+        list.add(
+            MenuItem(
+                R.drawable.ic_pin,
+                "Pos COVID-19",
+                false
+            )
+        )
 
         return list
     }

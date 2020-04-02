@@ -30,7 +30,7 @@ class AdapterMenu(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = arrayList[position]
 
-        if (!item.isActive) holder.container.alpha = 0.5f
+        if (!item.isActive) holder.container.alpha = 0.6f
         holder.ivMenu.setImageResource(item.img)
         holder.tvMenu.text = item.name
 

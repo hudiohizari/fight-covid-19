@@ -10,7 +10,7 @@
     <string name="label_positif">Positif</string>
     <string name="label_sembuh">Sembuh</string>
     <string name="label_meninggal">Meninggal</string>
-    <string name="label_orang">Orang</string>
+    <string name="label_kasus">Kasus</string>
     <string name="label_layanan">Layanan Aplikasi</string>
     <string name="label_layanan_caption">Nikmati layanan terbaik untuk indonesia sehat</string>
     <string name="label_sponsor">Terima Kasih</string>
@@ -27,5 +27,12 @@
     <string name="label_header_rujukan">Rumah sakit rujukan</string>
     <string name="label_caption_rujukan">Temukan rumah sakit untuk melawan COVID-19</string>
     <string name="label_dapatkan_petunjuk">Dapatkan petunjuk arah</string>
+
+    <!--Track ODP-->
+    <string name="label_masuk_atau_daftar">Masuk atau daftar?</string>
+    <string name="label_nikmati_layanan">Nikmati layanan terbaik untuk #BelitungVScovid19 Jika sudah memiliki akun, silahkan login, dan jika belum, boleh klik daftar</string>
+    <string name="label_masuk">Masuk</string>
+    <string name="label_daftar">Daftar LLT</string>
+    <string name="label_llt">#LiveLoveTracking</string>
 
 </resources>
