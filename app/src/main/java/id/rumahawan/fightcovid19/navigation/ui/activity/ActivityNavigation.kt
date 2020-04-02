@@ -51,6 +51,10 @@ class ActivityNavigation : BaseActivity() {
             }
             lastId = destination.id
         }
+
+        btnHome.setOnClickListener { navController.navigate(R.id.menuHome) }
+        btnRefresh.setOnClickListener { navController.navigate(lastId) }
+        btnInbox.setOnClickListener { navController.navigate(R.id.menuInbox) }
     }
 
     private fun activateButton(fab: FloatingActionButton){

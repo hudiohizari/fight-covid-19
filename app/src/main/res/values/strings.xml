@@ -23,7 +23,7 @@
     <!--Hospital Reference-->
     <string name="label_rs_rujukan">RS Rujukan</string>
     <string name="label_pilih_provinsi">Pilih provinsi</string>
-    <string name="label_lihat_semua">Lihat semua</string>
+    <string name="label_lihat_daftar">Lihat daftar</string>
     <string name="label_header_rujukan">Rumah sakit rujukan</string>
     <string name="label_caption_rujukan">Temukan rumah sakit untuk melawan COVID-19</string>
     <string name="label_dapatkan_petunjuk">Dapatkan petunjuk arah</string>

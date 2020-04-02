@@ -18,6 +18,7 @@ object Constant {
 
     const val KEY_URL = "KEY_URL"
     const val KEY_TITLE = "KEY_TITLE"
+    const val KEY_HOSPITAL_LIST = "KEY_HOSPITAL_LIST"
 
     fun getHomeMenu(): MutableList<MenuItem>{
         val list = mutableListOf<MenuItem>()

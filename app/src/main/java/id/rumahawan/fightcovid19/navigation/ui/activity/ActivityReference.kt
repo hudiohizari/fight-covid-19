@@ -41,7 +41,7 @@ class ActivityReference:
     private val factory: ViewModelFactoryReference by instance()
 
     private var map: GoogleMap? = null
-    private var selectedProvinceLocation: LatLng? = null
+    private var selectedProvince: Province? = null
 
     override fun onResume() {
         super.onResume()
@@ -87,11 +87,9 @@ class ActivityReference:
     }
 
     private fun getHospitalList(selected: Province){
-        val visibility = viewModel.isSeeAllVisible.value
-        if (visibility != View.VISIBLE) viewModel.isSeeAllVisible.value = View.VISIBLE
-        selectedProvinceLocation = LatLng(
-            selected.lat?.toDouble() ?: 0.0, selected.lng?.toDouble() ?: 0.0
-        )
+        val visibility = viewModel.seeListVisibility.value
+        if (visibility != View.VISIBLE) viewModel.seeListVisibility.value = View.VISIBLE
+        selectedProvince = selected
         viewModel.getHospitalList(
             selected.provinceCode ?: "",
             selected.lat?.toDouble() ?: 0.0,
@@ -112,7 +110,8 @@ class ActivityReference:
         map?.clear()
 
         val builder = LatLngBounds.Builder()
-        for (hospital in response.hospitals ?: mutableListOf()) {
+        val hospitals = response.hospitals ?: mutableListOf()
+        for (hospital in hospitals) {
             val bitmap = getBitmap(R.drawable.ic_hospital)
             val lat = hospital.lat?.toDouble() ?: 0.0
             val lng = hospital.lng?.toDouble() ?: 0.0
@@ -131,7 +130,10 @@ class ActivityReference:
         val bounds = builder.build()
         val padding = getPx(16) // offset from edges of the map in pixels
         val cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
-        map?.moveCamera(cu)
+        if (hospitals.size > 1) map?.moveCamera(cu)
+        else map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(
+            selectedProvince?.lat?.toDouble() ?: 0.0,
+            selectedProvince?.lng?.toDouble() ?: 0.0), 10f))
 
         map?.setOnMarkerClickListener {
             if (!it.title.equals("Lokasi anda", true)){
@@ -139,6 +141,16 @@ class ActivityReference:
                 dialog.show(supportFragmentManager, dialog.tag)
                 true
             } else { false }
+        }
+    }
+
+    override fun launchHospitalList() {
+        launchNewActivityReturn(ActivityHospitalList::class.java).apply {
+            putExtra(Constant.KEY_TITLE, selectedProvince?.province)
+            putParcelableArrayListExtra(Constant.KEY_HOSPITAL_LIST,
+                ArrayList(viewModel.getHospitalList())
+            )
+            startActivity(this)
         }
     }
 
@@ -172,7 +184,12 @@ class ActivityReference:
                             .position(indonesia)
                             .title("Lokasi anda")
                     )
-                    if (isMoveToMarker) map?.moveCamera(CameraUpdateFactory.newLatLngZoom(indonesia, 10f))
+                    if (isMoveToMarker) {
+                        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(indonesia, 10f))
+                        viewModel.seeListVisibility.apply {
+                            if (value != View.GONE) value = View.GONE
+                        }
+                    }
                 }
 
                 override fun onFailed(locationFailedEnum: AirLocation.LocationFailedEnum) {

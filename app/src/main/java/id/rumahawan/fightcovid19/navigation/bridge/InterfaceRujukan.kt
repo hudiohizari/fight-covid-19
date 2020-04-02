@@ -8,4 +8,5 @@ interface InterfaceRujukan: BaseInterfaceRemoteViewModel{
     fun getLocation(isMoveToMarker: Boolean)
     fun setListProvinceInput(list: List<String>)
     fun onHospitalsSucceed(response: ResponseHospital)
+    fun launchHospitalList()
 }

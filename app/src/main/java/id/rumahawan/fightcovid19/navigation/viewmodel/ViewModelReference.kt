@@ -28,7 +28,7 @@ class ViewModelReference(
 
     val onNavigationBackClick = View.OnClickListener { bridge?.onBackButton() }
 
-    val isSeeAllVisible = MutableLiveData<Int>()
+    val seeListVisibility = MutableLiveData<Int>()
         .apply { value = View.GONE }
     val title = MutableLiveData<String>().apply { value = "" }
     val address = MutableLiveData<String>().apply { value = "" }
@@ -82,6 +82,11 @@ class ViewModelReference(
 
     fun getHospitalList(): MutableList<Hospital>{
         return hospitals.value ?: mutableListOf()
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun onSeeAllPressed(view: View){
+        bridge?.launchHospitalList()
     }
 
     @Suppress("UNUSED_PARAMETER")
