@@ -14,6 +14,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import id.rumahawan.fightcovid19.R
 import id.rumahawan.fightcovid19.databinding.ActivityReferenceBinding
@@ -24,10 +25,7 @@ import id.rumahawan.fightcovid19.navigation.model.response.ResponseHospital
 import id.rumahawan.fightcovid19.navigation.ui.bottomsheet.BottomSheetHospitalDetail
 import id.rumahawan.fightcovid19.navigation.viewmodel.ViewModelReference
 import id.rumahawan.fightcovid19.navigation.viewmodelfactory.ViewModelFactoryReference
-import id.rumahawan.fightcovid19.utils.BaseActivity
-import id.rumahawan.fightcovid19.utils.getBitmap
-import id.rumahawan.fightcovid19.utils.snackbar
-import id.rumahawan.fightcovid19.utils.snackbarLong
+import id.rumahawan.fightcovid19.utils.*
 import mumayank.com.airlocationlibrary.AirLocation
 import org.kodein.di.generic.instance
 import java.util.*
@@ -112,6 +110,8 @@ class ActivityReference:
 
     override fun onHospitalsSucceed(response: ResponseHospital) {
         map?.clear()
+
+        val builder = LatLngBounds.Builder()
         for (hospital in response.hospitals ?: mutableListOf()) {
             val bitmap = getBitmap(R.drawable.ic_hospital)
             val lat = hospital.lat?.toDouble() ?: 0.0
@@ -124,8 +124,14 @@ class ActivityReference:
                     .position(position)
                     .title(hospital.name)
             )
+
+            builder.include(position)
         }
-        map?.moveCamera(CameraUpdateFactory.newLatLngZoom(selectedProvinceLocation, 6f))
+
+        val bounds = builder.build()
+        val padding = getPx(16) // offset from edges of the map in pixels
+        val cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
+        map?.moveCamera(cu)
 
         map?.setOnMarkerClickListener {
             if (!it.title.equals("Lokasi anda", true)){

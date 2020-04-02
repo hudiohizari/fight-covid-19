@@ -23,10 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import id.rumahawan.fightcovid19.R
 import id.rumahawan.fightcovid19.databinding.FragmentHomeBinding
 import id.rumahawan.fightcovid19.navigation.adapter.AdapterMenu
@@ -50,7 +47,7 @@ class FragmentHome:
     private lateinit var viewModel: ViewModelHome
     private val factory: ViewModelFactoryHome by instance()
 
-    private lateinit var map: GoogleMap
+    private var map: GoogleMap? = null
     private lateinit var ctx: Context
 
     override fun onResume() {
@@ -242,20 +239,19 @@ class FragmentHome:
         map = p0
 
         try {
-            val success = map.setMapStyle(MapStyleOptions.loadRawResourceStyle(
+            val success = map?.setMapStyle(MapStyleOptions.loadRawResourceStyle(
                 context, R.raw.map_style))
-            if (!success) Log.e("TAG", "Style parsing failed")
+            if (success == true) Log.e("TAG", "Style parsing failed")
         } catch (e: Resources.NotFoundException) {
             Log.e("TAG", "Can't find style. Error: ", e)
         }
-
-        val indonesia = LatLng(-3.630372, 117.93473)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(indonesia, 3.45f))
 
         viewModel.getMapData()
     }
 
     override fun onProvincesLoaded(response: ResponseProvince) {
+        val builder = LatLngBounds.Builder()
+
         val size = response.provinces?.size
         if(size != null) {
             val bitRed = ((ContextCompat.getDrawable(context!!,
@@ -279,13 +275,19 @@ class FragmentHome:
                     Bitmap.createScaledBitmap(bitRed, s, s, false)
                 }
 
-                map.addMarker(
+                builder.include(position)
+                map?.addMarker(
                     MarkerOptions()
                         .icon(BitmapDescriptorFactory.fromBitmap(markerIcon))
                         .position(position)
                         .title("$province Positif : $positive orang")
                 )
             }
+
+            val bounds = builder.build()
+            val padding = ctx.getPx(16) // offset from edges of the map in pixels
+            val cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
+            map?.moveCamera(cu)
         }
     }
 
