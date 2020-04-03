@@ -148,10 +148,12 @@ class ActivityReference:
     override fun launchHospitalList() {
         launchNewActivityReturn(ActivityHospitalList::class.java).apply {
             putExtra(Constant.KEY_TITLE, selectedProvince?.province)
-            val list = viewModel.getHospitalList().apply {
-                sortBy { it.distance }
-            }
-            putParcelableArrayListExtra(Constant.KEY_HOSPITAL_LIST, ArrayList(list))
+            putParcelableArrayListExtra(Constant.KEY_HOSPITAL_LIST,
+                ArrayList(
+                    viewModel.getHospitalList().apply {
+                        sortBy { it.distance }
+                    }.toMutableList()
+                ))
             startActivity(this)
         }
     }

@@ -15,6 +15,7 @@ object Constant {
     const val URL_PRIXA = "https://www.prixa.ai/"
     const val URL_ID_CLOUDHOST = "https://idcloudhost.com/"
     const val URL_DRAMA_TELYU = "https://www.instagram.com/drama.telyu/"
+    const val URL_BELITUNG = "https://belitungkab.go.id/"
 
     const val KEY_URL = "KEY_URL"
     const val KEY_TITLE = "KEY_TITLE"
@@ -116,6 +117,13 @@ object Constant {
             MenuItem(
                 R.drawable.img_dramatelyu,
                 "Drama Tel-U",
+                true
+            )
+        )
+        list.add(
+            MenuItem(
+                R.drawable.img_belitung,
+                "Belitung",
                 true
             )
         )

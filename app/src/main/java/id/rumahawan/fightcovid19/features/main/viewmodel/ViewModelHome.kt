@@ -34,9 +34,6 @@ class ViewModelHome(
                     dead.value = it.deaths.toString()
                     lastUpdated.value = "Terakhir dipebarui: ${it.lastUpdated}"
                 }
-                repository.getVersion().also {
-                    version.value = "Aplikasi versi ${it.appVersion}"
-                }
             } catch (e: ApiException) {
                 bridge?.showMessage(e.message)
             } catch (e: NoInternetException) {

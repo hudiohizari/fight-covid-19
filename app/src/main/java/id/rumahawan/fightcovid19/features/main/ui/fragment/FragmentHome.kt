@@ -24,6 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
+import id.rumahawan.fightcovid19.BuildConfig
 import id.rumahawan.fightcovid19.R
 import id.rumahawan.fightcovid19.databinding.FragmentHomeBinding
 import id.rumahawan.fightcovid19.features.main.adapter.AdapterMenu
@@ -104,6 +105,8 @@ class FragmentHome:
 
         getMenuAdapter()
         getSponsorAdapter()
+
+        viewModel.version.value = "Aplikasi versi ${BuildConfig.VERSION_NAME}"
     }
 
     private fun getMenuAdapter(): AdapterMenu {
@@ -202,37 +205,17 @@ class FragmentHome:
         override fun onClickItemProduk(item: MenuItem?, position: Int) {
             ctx.apply {
                 if (item?.isActive == true) {
-                    when (item.img){
-                        R.drawable.img_kemenkes -> {
-                            Intent(Intent.ACTION_VIEW).also {
-                                it.data = Uri.parse(Constant.URL_KEMENKES)
-                                startActivity(it)
-                            }
+                    Intent(Intent.ACTION_VIEW).also {
+                        it.data = when(item.img){
+                            R.drawable.img_kemenkes -> Uri.parse(Constant.URL_KEMENKES)
+                            R.drawable.img_bnbp -> Uri.parse(Constant.URL_BNBP)
+                            R.drawable.img_prixa -> Uri.parse(Constant.URL_PRIXA)
+                            R.drawable.img_idcloudhost -> Uri.parse(Constant.URL_ID_CLOUDHOST)
+                            R.drawable.img_dramatelyu -> Uri.parse(Constant.URL_DRAMA_TELYU)
+                            R.drawable.img_belitung -> Uri.parse(Constant.URL_BELITUNG)
+                            else -> Uri.parse("google.co.id")
                         }
-                        R.drawable.img_bnbp -> {
-                            Intent(Intent.ACTION_VIEW).also {
-                                it.data = Uri.parse(Constant.URL_BNBP)
-                                startActivity(it)
-                            }
-                        }
-                        R.drawable.img_prixa -> {
-                            Intent(Intent.ACTION_VIEW).also {
-                                it.data = Uri.parse(Constant.URL_PRIXA)
-                                startActivity(it)
-                            }
-                        }
-                        R.drawable.img_idcloudhost -> {
-                            Intent(Intent.ACTION_VIEW).also {
-                                it.data = Uri.parse(Constant.URL_ID_CLOUDHOST)
-                                startActivity(it)
-                            }
-                        }
-                        R.drawable.img_dramatelyu -> {
-                            Intent(Intent.ACTION_VIEW).also {
-                                it.data = Uri.parse(Constant.URL_DRAMA_TELYU)
-                                startActivity(it)
-                            }
-                        }
+                        startActivity(it)
                     }
                 } else{
                     toast("${item?.name} sedang dalam pengembangan")
