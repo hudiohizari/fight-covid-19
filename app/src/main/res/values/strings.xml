@@ -34,5 +34,16 @@
     <string name="label_masuk">Masuk</string>
     <string name="label_daftar">Daftar LLT</string>
     <string name="label_llt">#LiveLoveTracking</string>
+    <string name="label_data_pasien">Data Pasien ODS/ODP</string>
+    <string name="label_tahap">Tahap</string>
+    <string name="label_isi_data">Isi data yuk..</string>
+    <string name="label_isi_data_caption">Data ini untuk membantu #gardaterdepan agar bisa memantau dan membantu ketika suhu anda mengalami gejala COVID19</string>
+    <string name="label_nama">Nama</string>
+    <string name="label_usia">Usia</string>
+    <string name="label_nomor_hp">Nomor telepon genggam</string>
+    <string name="label_nomor_ktp">Nomor KTP</string>
+    <string name="label_email">E-mail</string>
+    <string name="label_alamat">Alamat</string>
+    <string name="label_lanjutkan">Lanjutkan</string>
 
 </resources>

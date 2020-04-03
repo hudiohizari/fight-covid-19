@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.rumahawan.fightcovid19">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality.
-    -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -20,11 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="id.rumahawan.fightcovid19.features.tracking.ui.ActivityTrackOdp"/>
-        <activity android:name="id.rumahawan.fightcovid19.features.main.ui.activity.ActivityHospitalList" />
-        <activity android:name="id.rumahawan.fightcovid19.features.main.ui.activity.ActivityReference" />
-        <activity android:name="id.rumahawan.fightcovid19.features.main.ui.activity.ActivityWebView" />
-        <activity android:name="id.rumahawan.fightcovid19.features.main.ui.activity.ActivityNavigation">
+        <activity android:name=".features.tracking.ui.ActivityRegisterOne"/>
+        <activity android:name=".features.tracking.ui.ActivityTrackOdp" />
+        <activity android:name=".features.main.ui.activity.ActivityHospitalList" />
+        <activity android:name=".features.main.ui.activity.ActivityReference" />
+        <activity android:name=".features.main.ui.activity.ActivityWebView" />
+        <activity android:name=".features.main.ui.activity.ActivityNavigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
