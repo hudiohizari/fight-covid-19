@@ -10,15 +10,14 @@ abstract class SafeApiRequest {
 
         if (response.isSuccessful){
 //            val body = Gson().toJson(response.body())
-//            val status = JSONObject(body).getString("status")
-//            if (status != KConstant.RESPONSE_OK_STATUS_CODE &&
-//                status != KConstant.RESPONSE_INVALID_DEVICE &&
-//                status != KConstant.RESPONSE_MINIMAL &&
-//                status != KConstant.RESPONSE_BLOCKIR_ACCOUNT &&
-//                status != KConstant.RESPONSE_PROSES_REGISTER &&
-//                status != KConstant.RESPONSE_PENDING_CODE){
-//                val message = JSONObject(body).getString("message")
-//                throw ApiException(message)
+//            try {
+//                val status = JSONObject(body).getInt("status")
+//                if (status <= 200){
+//                    val message = JSONObject(body).getString("error")
+//                    throw ApiException(message)
+//                }
+//            } catch (e: JSONException) {
+//                Log.d("API Execption", "$e in $body")
 //            }
             return response.body()!!
         } else {

@@ -57,7 +57,7 @@ class ActivityHospitalList:
                 itemAnimator = DefaultItemAnimator()
                 adapter = AdapterHospital(viewModel.hospitals.value ?: mutableListOf())
                 adapter.setInterface(object: AdapterHospital.Interface{
-                    override fun onClickItemProduk(item: Hospital, position: Int) {
+                    override fun onClickItem(item: Hospital, position: Int) {
                         val dialog = BottomSheetHospitalDetail(item)
                         dialog.show(supportFragmentManager, dialog.tag)
                     }

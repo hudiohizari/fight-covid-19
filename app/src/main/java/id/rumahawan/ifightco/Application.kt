@@ -2,8 +2,10 @@ package id.rumahawan.ifightco
 
 import android.app.Application
 import id.rumahawan.ifightco.features.main.repository.RepositoryHome
+import id.rumahawan.ifightco.features.main.repository.RepositoryInbox
 import id.rumahawan.ifightco.features.main.repository.RepositoryReference
 import id.rumahawan.ifightco.features.main.viewmodelfactory.ViewModelFactoryHome
+import id.rumahawan.ifightco.features.main.viewmodelfactory.ViewModelFactoryInbox
 import id.rumahawan.ifightco.features.main.viewmodelfactory.ViewModelFactoryReference
 import id.rumahawan.ifightco.repomanager.local.LocalRequestManager
 import id.rumahawan.ifightco.repomanager.remote.NetworkConnectionInterceptor
@@ -39,6 +41,12 @@ class Application: Application(), KodeinAware {
         */
         bind() from singleton { RepositoryReference(instance()) }
         bind() from provider { ViewModelFactoryReference(instance()) }
+
+        /*
+        * Inbox
+        */
+        bind() from singleton { RepositoryInbox(instance()) }
+        bind() from provider { ViewModelFactoryInbox(instance()) }
 
     }
 }

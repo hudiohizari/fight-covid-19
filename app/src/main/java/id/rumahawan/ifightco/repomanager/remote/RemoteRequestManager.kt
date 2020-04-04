@@ -1,10 +1,7 @@
 package id.rumahawan.ifightco.repomanager.remote
 
 import id.rumahawan.ifightco.BuildConfig
-import id.rumahawan.ifightco.features.main.model.response.ResponseHospital
-import id.rumahawan.ifightco.features.main.model.response.ResponseProvince
-import id.rumahawan.ifightco.features.main.model.response.ResponseRatio
-import id.rumahawan.ifightco.features.main.model.response.ResponseVersion
+import id.rumahawan.ifightco.features.main.model.response.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -24,6 +21,9 @@ interface RemoteRequestManager {
 
     @GET("provincess")
     suspend fun getProvinces(): Response<ResponseProvince>
+
+    @GET("fightcovid19/notification")
+    suspend fun getInbox(): Response<ResponseInbox>
 
     @GET("hospital/provincess/{provence_id}/{lat}/{lng}")
     suspend fun getHospitals(

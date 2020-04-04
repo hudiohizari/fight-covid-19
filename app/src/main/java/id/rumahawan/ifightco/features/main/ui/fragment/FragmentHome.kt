@@ -75,7 +75,6 @@ class FragmentHome:
             false
         )
         viewModel = ViewModelProvider(this, factory).get(ViewModelHome::class.java)
-        viewModel.bridge = this
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -86,6 +85,8 @@ class FragmentHome:
 
     @Suppress("UNUSED_ANONYMOUS_PARAMETER")
     private fun initView(savedInstanceState: Bundle?){
+        viewModel.bridge = this
+
         val tvHeader = SpannableString("#FightCOVID-19")
         tvHeader.setSpan(ForegroundColorSpan(ContextCompat.getColor(ctx, R.color.red)),
             0, tvHeader.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)

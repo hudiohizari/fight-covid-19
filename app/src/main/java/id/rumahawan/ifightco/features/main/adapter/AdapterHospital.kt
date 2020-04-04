@@ -36,7 +36,7 @@ class AdapterHospital(
         holder.tvDistance.text = "${item.distance} Km dari tempatmu"
 
         holder.container.setOnClickListener {
-            bridge?.onClickItemProduk(item, position)
+            bridge?.onClickItem(item, position)
         }
     }
 
@@ -52,6 +52,6 @@ class AdapterHospital(
     }
 
     interface Interface {
-        fun onClickItemProduk(item: Hospital, position: Int)
+        fun onClickItem(item: Hospital, position: Int)
     }
 }
