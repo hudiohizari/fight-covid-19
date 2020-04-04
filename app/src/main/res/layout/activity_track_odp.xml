@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="id.rumahawan.fightcovid19.features.tracking.viewmodel.ViewModelTrackOdp" />
+            type="id.rumahawan.ifightco.features.tracking.viewmodel.ViewModelTrackOdp" />
     </data>
     
     <androidx.constraintlayout.widget.ConstraintLayout

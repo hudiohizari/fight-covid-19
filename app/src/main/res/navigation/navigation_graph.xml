@@ -6,13 +6,13 @@
 
     <fragment
         android:id="@+id/menuHome"
-        android:name="id.rumahawan.fightcovid19.features.main.ui.fragment.FragmentHome"
+        android:name="id.rumahawan.ifightco.features.main.ui.fragment.FragmentHome"
         android:label="@string/label_beranda"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/menuInbox"
-        android:name="id.rumahawan.fightcovid19.features.main.ui.fragment.FragmentInbox"
+        android:name="id.rumahawan.ifightco.features.main.ui.fragment.FragmentInbox"
         android:label="@string/label_pesan"
         tools:layout="@layout/fragment_inbox" />
 

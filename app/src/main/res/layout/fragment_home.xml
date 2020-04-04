@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="id.rumahawan.fightcovid19.features.main.viewmodel.ViewModelHome" />
+            type="id.rumahawan.ifightco.features.main.viewmodel.ViewModelHome" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -35,7 +35,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Title"/>
 
-            <id.rumahawan.fightcovid19.utils.customcomponent.CustomMapView
+            <id.rumahawan.ifightco.utils.customcomponent.CustomMapView
                 android:id="@+id/mvMain"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="0dp"

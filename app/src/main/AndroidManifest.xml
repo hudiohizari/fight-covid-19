@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="id.rumahawan.fightcovid19">
+    package="id.rumahawan.ifightco">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name=".Application"
+        android:name="id.rumahawan.ifightco.Application"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,12 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.tracking.ui.ActivityRegisterOne"/>
-        <activity android:name=".features.tracking.ui.ActivityTrackOdp" />
-        <activity android:name=".features.main.ui.activity.ActivityHospitalList" />
-        <activity android:name=".features.main.ui.activity.ActivityReference" />
-        <activity android:name=".features.main.ui.activity.ActivityWebView" />
-        <activity android:name=".features.main.ui.activity.ActivityNavigation">
+        <activity android:name="id.rumahawan.ifightco.features.tracking.ui.ActivityRegisterOne"/>
+        <activity android:name="id.rumahawan.ifightco.features.tracking.ui.ActivityTrackOdp" />
+        <activity android:name="id.rumahawan.ifightco.features.main.ui.activity.ActivityHospitalList" />
+        <activity android:name="id.rumahawan.ifightco.features.main.ui.activity.ActivityReference" />
+        <activity android:name="id.rumahawan.ifightco.features.main.ui.activity.ActivityWebView" />
+        <activity android:name="id.rumahawan.ifightco.features.main.ui.activity.ActivityNavigation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -53,17 +53,17 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:78221465698:android:3dade68b6b4f4c30ce193b",
+        "mobilesdk_app_id": "1:78221465698:android:b4378eeab2dc1299ce193b",
         "android_client_info": {
-          "package_name": "id.rumahawan.fightcovid19"
+          "package_name": "id.rumahawan.ifightco"
         }
       },
       "oauth_client": [
         {
-          "client_id": "78221465698-99eoupmb1npm0up8vodsns4eogd4npt6.apps.googleusercontent.com",
+          "client_id": "78221465698-t4jiktevjnv8t5gpklli3uohaeeoohrt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "id.rumahawan.fightcovid19",
+            "package_name": "id.rumahawan.ifightco",
             "certificate_hash": "6e2f5643ab6b43f4f31c39a3e6e962aaac325f50"
           }
         },

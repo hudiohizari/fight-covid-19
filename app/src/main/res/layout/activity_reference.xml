@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="id.rumahawan.fightcovid19.features.main.viewmodel.ViewModelReference" />
+            type="id.rumahawan.ifightco.features.main.viewmodel.ViewModelReference" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,7 +68,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <id.rumahawan.fightcovid19.utils.customcomponent.CustomMapView
+        <id.rumahawan.ifightco.utils.customcomponent.CustomMapView
             android:id="@+id/mvMain"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="0dp"
