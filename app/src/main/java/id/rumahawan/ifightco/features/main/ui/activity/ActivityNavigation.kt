@@ -64,8 +64,8 @@ class ActivityNavigation : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        when (navController.graph.startDestination) {
-            navController.currentDestination?.id -> {
+        when (fMain.childFragmentManager.backStackEntryCount) {
+            0 -> {
                 if (twice) {
                     super.onBackPressed()
                     return

@@ -14,7 +14,7 @@
         android:id="@+id/image_thumbnail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/img_logo"
         android:adjustViewBounds="true"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintStart_toStartOf="parent"

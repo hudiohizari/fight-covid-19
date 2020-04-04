@@ -18,7 +18,7 @@ class ViewModelInbox(
 
     val inboxList = MutableLiveData<MutableList<Inbox>>()
         .apply { value = mutableListOf() }
-    val emptyVisibility = MutableLiveData<Int>().apply { value = View.VISIBLE }
+    val emptyVisibility = MutableLiveData<Int>().apply { value = View.GONE }
     val listVisibility = MutableLiveData<Int>().apply { value = View.GONE }
 
     init {
