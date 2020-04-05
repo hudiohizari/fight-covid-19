@@ -60,6 +60,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "78221465698-vg22oocdje43d2m0f1esb8a74h6ov4g1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.rumahawan.ifightco",
+            "certificate_hash": "45d2b92eaace81d4027cdfbed949073ad2a91f6d"
+          }
+        },
+        {
+          "client_id": "78221465698-6kae537p2e21713ja8k7q7i0s6h5s61c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.rumahawan.ifightco",
+            "certificate_hash": "7718c3d41cc9e690732b312ae02677cfedd13541"
+          }
+        },
+        {
           "client_id": "78221465698-t4jiktevjnv8t5gpklli3uohaeeoohrt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

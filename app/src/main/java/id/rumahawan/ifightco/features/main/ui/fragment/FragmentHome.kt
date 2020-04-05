@@ -32,7 +32,6 @@ import id.rumahawan.ifightco.features.main.bridge.InterfaceHome
 import id.rumahawan.ifightco.features.main.model.data.MenuItem
 import id.rumahawan.ifightco.features.main.model.response.ResponseProvince
 import id.rumahawan.ifightco.features.main.ui.activity.ActivityReference
-import id.rumahawan.ifightco.features.tracking.ui.ActivityTrackOdp
 import id.rumahawan.ifightco.features.main.ui.activity.ActivityWebView
 import id.rumahawan.ifightco.features.main.viewmodel.ViewModelHome
 import id.rumahawan.ifightco.features.main.viewmodelfactory.ViewModelFactoryHome
@@ -168,7 +167,7 @@ class FragmentHome:
                                 startActivity(this)
                             }
                         }
-                        R.drawable.ic_map -> launchNewActivity(ActivityTrackOdp::class.java)
+//                        R.drawable.ic_map -> launchNewActivity(ActivityTrackOdp::class.java)
                         R.drawable.ic_graphic -> {
                             launchNewActivityReturn(ActivityWebView::class.java).apply {
                                 putExtra(Constant.KEY_TITLE, item.name)

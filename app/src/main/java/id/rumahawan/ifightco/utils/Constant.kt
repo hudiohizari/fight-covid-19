@@ -65,17 +65,17 @@ object Constant {
                 true
             )
         )
-        list.add(
-            MenuItem(
-                R.drawable.ic_map,
-                "Lacak ODS/ODP Belitung",
-                false
-            )
-        )
+//        list.add(
+//            MenuItem(
+//                R.drawable.ic_map,
+//                "Lacak ODS/ODP Belitung",
+//                false
+//            )
+//        )
         list.add(
             MenuItem(
                 R.drawable.ic_graphic,
-                "Grafik",
+                "Grafik Nasional",
                 true
             )
         )
